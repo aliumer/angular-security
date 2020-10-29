@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h1>Administration Tasks</h1>
+    </div>
+</div>
+
+<div class="row">
+    <button class="btn btn-primary" (click)="addUser()">
+        Add New User
+    </button>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <label for="userName">User Name</label>
+        <input class="form-control" type="text" [(ngModel)]="userId" name="userId" id="userId">
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <button class="btn btn-primary" (click)="searchUser()">Search User</button>
+    </div>
+</div>
+
+<div>
+    <table class="table" *ngIf="user?.claims">
+        <thead>
+            <tr><th>Claim</th><th>Available</th></tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let c of user.claims">
+                <td>{{ c.claimType }}</td>
+                <td>{{ c.claimValue }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="users && users.length">
+    <table class="table table-bordered table-striped table-condensed">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>User Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.userId}}</td>
+                <td>{{user.userName}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

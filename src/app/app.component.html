@@ -8,12 +8,19 @@
     </div>
     <ul class="nav navbar-nav">
       <li>
-        <a routerLink="/products" *ngIf="securityObject?.canAccessProduct">Products</a>
+        <ng-container *ngIf="securityObject?.isAuthenticated">
+          <a routerLink="/products" *hasClaim="'CanAccessProducts'">Products</a>
+        </ng-container>
       </li>
       <li>
-        <a routerLink="/categories" *ngIf="securityObject?.canAccessCategories">Categories</a>
+        <ng-container *ngIf="securityObject?.isAuthenticated">
+          <a routerLink="/categories" *hasClaim="'CanAccessCategories'">Categories</a>
+        </ng-container>
       </li>
       <li>
+        <ng-container *ngIf="securityObject?.isAuthenticated">
+          <a routerLink="/admin" *hasClaim="'CanAccessAdmin'">Admin</a>
+        </ng-container>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

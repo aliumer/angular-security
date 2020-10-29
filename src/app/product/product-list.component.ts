@@ -14,13 +14,15 @@ export class ProductListComponent implements OnInit {
   products: Product[];
   securityObject: AppUserAuth = null;
 
-  constructor(private productService: ProductService, private securityService: SecurityService,
+  constructor(private productService: ProductService,
+    private securityService: SecurityService,
     private router: Router) { }
 
   ngOnInit() {
     this.securityService.securitySubject.subscribe((data) => {
       this.securityObject = data;
     });
+    this.securityService.getSecurityObject();
     this.getProducts();
   }
 
